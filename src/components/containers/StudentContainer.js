@@ -15,6 +15,7 @@ class StudentContainer extends Component {
   // Get student data from back-end database
   componentDidMount() {
     //getting student ID from url
+
     this.props.fetchStudent(this.props.match.params.id);
   }
 
