@@ -53,22 +53,22 @@ const EditCampusView = (props) => {
             </Typography>
           </div>
           <form style={{textAlign: 'center'}} onSubmit={(e) => handleSubmit(e)}>
-            <label style= {{color:'#11153e', fontWeight: 'bold'}}>First Name: </label>
+            <label style= {{color:'#11153e', fontWeight: 'bold'}}>Name: </label>
             <input type="text" defaultValue={campus.name} name="name" onChange ={(e) => handleChange(e)} />
             <br/>
             <br/>
 
-            <label style={{color:'#11153e', fontWeight: 'bold'}}>Last Name: </label>
+            <label style={{color:'#11153e', fontWeight: 'bold'}}>Address: </label>
             <input type="text" defaultValue={campus.address} name="address" onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
 
-            <label style={{color:'#11153e', fontWeight: 'bold'}}>Campus Id: </label>
+            <label style={{color:'#11153e', fontWeight: 'bold'}}>Description: </label>
             <input type="text" defaultValue={campus.description} name="description" onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
 
-            <label style={{color:'#11153e', fontWeight: 'bold'}}>Email: </label>
+            <label style={{color:'#11153e', fontWeight: 'bold'}}>Image URL: </label>
             <input type="text" defaultValue={campus.imageurl} name="imageurl" onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
