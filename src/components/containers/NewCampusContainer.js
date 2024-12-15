@@ -26,7 +26,7 @@ class NewCampusContainer extends Component {
       redirectId: null
     };
   }
-
+  
   // Capture input data when it is entered
   handleChange = event => {
     this.setState({
@@ -45,18 +45,22 @@ class NewCampusContainer extends Component {
         imageurl: this.state.imageurl
     };
     
-    // Add new campus in back-end database
-    let newCampus = await this.props.addCampus(campus);
+    let regex_alpha = /^[-a-zA-Z0-9]+[-a-zA-Z0-9 ]*$/;
 
-    // Update state, and trigger redirect to show the new campus
-    this.setState({
-      name: "", 
-      address: "", 
-      description: "", 
-      imageurl: "",
-      redirect: true, 
-      redirectId: newCampus.id
-    });
+    if(regex_alpha.test(campus.name) && regex_alpha.test(campus.address)) {
+        // Add new campus in back-end database
+        let newCampus = await this.props.addCampus(campus);
+
+        // Update state, and trigger redirect to show the new campus
+        this.setState({
+        name: "", 
+        address: "", 
+        description: "", 
+        imageurl: "",
+        redirect: true, 
+        redirectId: newCampus.id
+        });
+    }
   }
 
   // Unmount when the component is being removed from the DOM:

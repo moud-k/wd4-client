@@ -44,6 +44,7 @@ class EditCampusContainer extends Component {
   handleSubmit = async event => {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
 
+    
     let campus = {
         name: this.state.name || this.props.campus.name,
         address: this.state.address || this.props.campus.address,
@@ -51,15 +52,20 @@ class EditCampusContainer extends Component {
         imageurl: this.state.imageurl || this.props.campus.imageurl,
         id: this.props.match.params.id
     };
-    
-    // edit campus in back-end database
-    await this.props.editCampus(campus);
 
-    // Update state, and trigger redirect to show the edited campus
-    this.setState({
-      redirect: true, 
-      redirectId: this.props.match.params.id
-    });
+    let regex_alpha = /^[-a-zA-Z0-9]+[-a-zA-Z0-9 ]*$/;
+
+    if(regex_alpha.test(campus.name) && regex_alpha.test(campus.address)) {
+    
+        // edit campus in back-end database
+        await this.props.editCampus(campus);
+
+        // Update state, and trigger redirect to show the edited campus
+        this.setState({
+        redirect: true, 
+        redirectId: this.props.match.params.id
+        });
+    }
   }
 
 //   // Unmount when the component is being removed from the DOM:

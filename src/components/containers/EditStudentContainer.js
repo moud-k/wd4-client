@@ -56,14 +56,19 @@ class EditStudentContainer extends Component {
         id: this.props.match.params.id
     };
     
-    // edit student in back-end database
-    await this.props.editStudent(student);
+    let regex_alpha = /^[a-zA-Z]+$/;
+    let regex_email = /^[a-zA-z0-9.]+@[a-zA-z0-9.]*[.][a-zA-z]+$/;
 
-    // Update state, and trigger redirect to show the edited student
-    this.setState({
-      redirect: true, 
-      redirectId: this.props.match.params.id
-    });
+    if(regex_alpha.test(student.firstname) && regex_alpha.test(student.lastname) && regex_email.test(student.email)) {
+        // edit student in back-end database
+        await this.props.editStudent(student);
+
+        // Update state, and trigger redirect to show the edited student
+        this.setState({
+        redirect: true, 
+        redirectId: this.props.match.params.id
+        });
+    }
   }
 
 //   // Unmount when the component is being removed from the DOM:

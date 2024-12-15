@@ -48,21 +48,26 @@ class NewStudentContainer extends Component {
         imageurl: this.state.imageurl,
         gpa: this.state.gpa
     };
-    
-    // Add new student in back-end database
-    let newStudent = await this.props.addStudent(student);
 
-    // Update state, and trigger redirect to show the new student
-    this.setState({
-      firstname: "", 
-      lastname: "", 
-      campusId: null, 
-      email: "",
-      imageurl: "",
-      gpa: null,
-      redirect: true, 
-      redirectId: newStudent.id
-    });
+    let regex_alpha = /^[a-zA-Z]+$/;
+    let regex_email = /^[a-zA-z0-9.]+@[a-zA-z0-9.]*[.][a-zA-z]+$/;
+
+    if(regex_alpha.test(student.firstname) && regex_alpha.test(student.lastname) && regex_email.test(student.email)) {
+        // Add new student in back-end database
+        let newStudent = await this.props.addStudent(student);
+
+        // Update state, and trigger redirect to show the new student
+        this.setState({
+        firstname: "", 
+        lastname: "", 
+        campusId: null, 
+        email: "",
+        imageurl: "",
+        gpa: null,
+        redirect: true, 
+        redirectId: newStudent.id
+        });
+    }
   }
 
   // Unmount when the component is being removed from the DOM:
